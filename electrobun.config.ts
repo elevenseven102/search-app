@@ -1,4 +1,4 @@
-import { defineConfig } from "electrobun/config";
+import { defineConfig } from "electrobun";
 
 export default defineConfig({
   mainProcessEntry: "src/main.ts",
@@ -6,10 +6,6 @@ export default defineConfig({
     {
       name: "mainview",
       entry: "src/view/index.html",
-      preload: "src/view/preload.ts",
     },
   ],
-  build: {
-    outDir: "dist",
-  },
 });
