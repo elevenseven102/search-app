@@ -1,7 +1,14 @@
-import { contextBridge, ipcRenderer } from "electrobun/view";
+// Window API for Electrobun
+declare global {
+  interface Window {
+    api: {
+      toggleWindow: () => void;
+    };
+  }
+}
 
-contextBridge.exposeInMainWorld("api", {
+window.api = {
   toggleWindow: () => {
-    ipcRenderer.send("toggle-window");
+    console.log("Toggle window");
   },
-});
+};
