@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="search-wrapper">
+      <div class="tabs">
+        <button class="tab active" data-type="0">naim</button>
+        <button class="tab" data-type="1">inverted</button>
+        <button class="tab" data-type="2">voenkomats</button>
+        <button class="tab" data-type="3">addresses</button>
+      </div>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Поиск..."
+        autocomplete="off"
+      />
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

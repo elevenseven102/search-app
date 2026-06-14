@@ -1,0 +1,17 @@
+{
+  "name": "search-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "electrobun dev",
+    "build": "electrobun build",
+    "start": "electrobun start"
+  },
+  "dependencies": {
+    "electrobun": "latest",
+    "fuse.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  }
+}
