@@ -1,8 +1,6 @@
-import { BrowserWindow } from "electrobun/bun";
-import { app, ipcMain } from "electrobun/bun";
+import { BrowserWindow, app } from "electrobun";
 
 let mainWindow: BrowserWindow | null = null;
-let isVisible = false;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
@@ -10,36 +8,29 @@ app.on("ready", () => {
     height: 400,
     transparent: true,
     frame: false,
-    show: false,
     alwaysOnTop: true,
-    webPreferences: {
-      preload: "src/view/preload.ts",
-      nodeIntegration: false,
-      contextIsolation: true,
-    },
+    show: false,
   });
 
   mainWindow.loadURL("views://mainview/index.html");
 
-  // Toggle window visibility
-  ipcMain.on("toggle-window", () => {
-    if (!mainWindow) return;
-    
-    if (isVisible) {
-      mainWindow.hide();
-      isVisible = false;
-    } else {
-      mainWindow.show();
-      mainWindow.focus();
-      isVisible = true;
-    }
-  });
-
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+
+  app.on("window-all-closed", () => {
+    app.quit();
+  });
 });
 
-app.on("window-all-closed", () => {
-  app.quit();
+// Handle Ctrl+Q globally
+process.on("message", (msg: any) => {
+  if (msg?.type === "toggle-window" && mainWindow) {
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+    } else {
+      mainWindow.show();
+      mainWindow.focus();
+    }
+  }
 });
